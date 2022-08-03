@@ -6,8 +6,7 @@
     "node": "18.5.0"
   },
   "scripts": {
-    "start1": "node bot.js",
-    "start": "nodemon bot.js"
+    "dev": "nodemon src/index.js"
   },
   "keywords": [],
   "author": "",
