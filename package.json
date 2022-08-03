@@ -1,5 +1,8 @@
 {
   "name": "proton",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bot.js",
   "scripts": {
     "start1": "node bot.js",
     "start": "nodemon bot.js"
