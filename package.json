@@ -1,8 +1,10 @@
 {
-  "name": "proton",
+  "name": "example-app",
+  "description": "a really cool app",
   "version": "1.0.0",
-  "description": "",
-  "main": "bot.js",
+  "engines": {
+    "node": "18.5.0"
+  },
   "scripts": {
     "start1": "node bot.js",
     "start": "nodemon bot.js"
