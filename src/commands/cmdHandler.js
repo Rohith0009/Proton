@@ -42,49 +42,51 @@ module.exports = async (client) => {
 
     const extCommands = [
       [
-        ["bread"],
+        ["rohith"],
         async () => {
-          await multiReact(message, "🍞🇧🇷🇪🇦🇩👍");
-        },
-      ],
-      [
-        ["honk"],
-        async () => {
-          await multiReact(message, goosStanding, `🇭🇴🇳🇰👍`);
-        },
-      ],
-      [
-        ["akane", "akane cat"],
-        async () => {
-          await multiReact(message, `🅰️ 🇰 🇦 🇳 🇪 🐱`);
+          await multiReact(message, "🇷🇴🇭🇮🇹🇭");
         },
       ],
       [["pineapple"], () => message.react("🍍")],
       [["forgor"], () => message.react("💀")],
       [["cheese"], () => message.react("🧀")],
       [["oink"], () => message.react("🐷")],
-      [
-        ["download avdan os", "avdan os iso"],
-        {
-          embeds: [
-            new MessageEmbed()
-              .setDescription(
-                "We have not finished developing AvdanOS, so there is not a download yet.\nWe are currently working on the **window manager**.\nSubscribe to [our Youtube channel](https://www.youtube.com/channel/UCHLCBj83J7bR82HwjhCJusA) for updates on our development."
-              )
-              .setColor("BLUE"),
-          ],
-        },
-      ],
-      [
-        ["how do i become developer", "how do i become a developer"],
-        {
-          embeds: [new MessageEmbed().setDescription("To join the team please go to #join-the-team, you must meet the requirements specified there.").setColor("BLUE")],
-        },
-      ],
+      [["easter egg"], () => message.react("🥚")],
     ];
 
-    if (message.content.startsWith("this has been") && message.content.endsWith("in 100 seconds") && message.content != "this has been in 100 seconds") {
-      message.channel.send("hit the like button and subscribe if you want to see more short videos like this thanks for watching and I will see you in the next one");
+    var msg = message.content.toLowerCase();
+    var msg = msg.replace(/[&\/\\#,+()$~!%.'":*?<>{}]/, "");
+    if (message.author.id === client.user.id) return;
+
+    if (msg === "good morning") {
+      message.reply("Good Morning!");
+    }
+    if (msg === "good afternoon") {
+      message.reply("Good Afternoon!");
+    }
+    if (msg === "good evening") {
+      message.reply("Good Evening!");
+    }
+    if (msg === "good night") {
+      message.reply("Good Night!");
+    }
+    if (msg === "hello") {
+      message.reply("Hello!");
+    }
+    if (msg === "hi") {
+      message.reply("Hello!");
+    }
+    if (msg === "bye") {
+      message.reply("Bye! Until We Meet Again");
+    }
+    if (msg === "how are you") {
+      message.reply("I Am Fine! How Are You?");
+    }
+    if (msg === "i am fine") {
+      message.reply("Great!");
+    }
+    if (msg === "i am bored") {
+      message.reply("No Problem! I am There To Chat With You!!");
     }
 
     if (!message.author.bot) {
