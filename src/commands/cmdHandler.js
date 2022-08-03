@@ -52,6 +52,7 @@ module.exports = async (client) => {
       [["cheese"], () => message.react("🧀")],
       [["oink"], () => message.react("🐷")],
       [["easter egg"], () => message.react("🥚")],
+      [["sad"], () => message.react("😔")],
     ];
 
     var msg = message.content.toLowerCase();
