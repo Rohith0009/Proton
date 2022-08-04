@@ -89,6 +89,9 @@ module.exports = async (client) => {
     if (msg === "i am bored") {
       message.reply("No Problem! I am There To Chat With You!!");
     }
+    if ((msg === "pls on the server", "please on the server")) {
+      message.reply("Please contact Rohith or Jyothir to turn on the server");
+    }
 
     if (!message.author.bot) {
       if (!message.content.toLowerCase().startsWith(process.env.PREFIX)) {
