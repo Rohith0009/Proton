@@ -89,8 +89,17 @@ module.exports = async (client) => {
     if (msg === "i am bored") {
       message.reply("No Problem! I am There To Chat With You!!");
     }
-    if ((msg === "pls on the server", "please on the server")) {
-      message.reply("Please contact Rohith or Jyothir to turn on the server");
+    if (msg === "pls on the server") {
+      message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
+    }
+    if (msg === "pls turn on the server") {
+      message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
+    }
+    if (msg === "please on the server") {
+      message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
+    }
+    if (msg === "please turn on the server") {
+      message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
     }
 
     if (!message.author.bot) {
