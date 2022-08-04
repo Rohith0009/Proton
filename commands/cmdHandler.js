@@ -91,15 +91,23 @@ module.exports = async (client) => {
     }
     if (msg === "pls on the server") {
       message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
+      client.users.cache.get("892301934160146453").send(message.author.username + " Requested to turn on the server");
+      client.users.cache.get("736228651372380321").send(message.author.username + " Requested to turn on the server");
     }
     if (msg === "pls turn on the server") {
       message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
+      client.users.cache.get("892301934160146453").send(message.author.username + " Requested to turn on the server");
+      client.users.cache.get("736228651372380321").send(message.author.username + " Requested to turn on the server");
     }
     if (msg === "please on the server") {
       message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
+      client.users.cache.get("892301934160146453").send(message.author.username + " Requested to turn on the server");
+      client.users.cache.get("736228651372380321").send(message.author.username + " Requested to turn on the server");
     }
     if (msg === "please turn on the server") {
       message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
+      client.users.cache.get("892301934160146453").send(message.author.username + " Requested to turn on the server");
+      client.users.cache.get("736228651372380321").send(message.author.username + " Requested to turn on the server");
     }
 
     if (!message.author.bot) {
