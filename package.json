@@ -3,9 +3,9 @@
   "description": "a really cool app",
   "version": "1.0.0",
   "scripts": {
-    "dev": "nodemon src/index.js",
-    "start1": "node bot.js",
-    "start": "nodemon bot.js"
+    "dev": "nodemon index.js",
+    "start1": "node index.js",
+    "start": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
