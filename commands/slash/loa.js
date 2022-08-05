@@ -1,31 +1,29 @@
 const config = require("../../config.json");
-const { MessageEmbed, MessageActionRow, MessageButton, Constants, Permissions } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, Permissions } = require("discord.js");
 
 module.exports = {
   name: "loa",
   description: "Apply or Return LOA",
   options: [
     {
-      type: "SUB_COMMAND",
       name: "apply",
       description: "Apply for LOA",
       options: [
         {
           name: "reason",
           description: "The reason for your leave",
-          type: "STRING",
           required: true,
+          type: ApplicationCommandOptionType.String,
         },
         {
           name: "return",
           description: "Time of return from leave",
-          type: "STRING",
           required: true,
+          type: ApplicationCommandOptionType.String,
         },
       ],
     },
     {
-      type: "SUB_COMMAND",
       name: "return",
       description: "Return from LOA",
     },
@@ -45,7 +43,7 @@ module.exports = {
       const loaRole = interaction.guild.roles.cache.find((r) => r.name === "LOA");
       const loaChannel = interaction.guild.channels.cache.find((c) => c.id === "1004743469635469395");
 
-      const embed = new MessageEmbed({
+      const embed = new EmbedBuilder({
         title: `LOA pending`,
         color: "#0099ff",
         fields: [
@@ -53,18 +51,20 @@ module.exports = {
             name: "Reason",
             value: options.getString("reason"),
             inline: true,
+            type: ApplicationCommandOptionType.String,
           },
           {
             name: "Return",
             value: options.getString("return"),
             inline: true,
+            type: ApplicationCommandOptionType.String,
           },
         ],
       }).setAuthor({
         name: interaction.member.user.tag,
         iconURL: interaction.member.displayAvatarURL(),
       });
-      const buttons = new MessageActionRow().addComponents(new MessageButton().setCustomId("accept").setLabel("Accept").setStyle("PRIMARY"), new MessageButton().setCustomId("deny").setLabel("Deny").setStyle("SECONDARY"));
+      const buttons = new ActionRowBuilder().addComponents(new ButtonBuilder().setCustomId("accept").setLabel("Accept").setStyle("Primary"), new ButtonBuilder().setCustomId("deny").setLabel("Deny").setStyle("Secondary"));
       const filter = (ButtonInteraction) => {
         return ButtonInteraction.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR);
       };
