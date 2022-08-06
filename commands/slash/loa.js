@@ -1,5 +1,5 @@
 const config = require("../../config.json");
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, Permissions } = require("discord.js");
+const { EmbedBuilder, colors, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, Permissions } = require("discord.js");
 
 module.exports = {
   name: "loa",
@@ -45,7 +45,7 @@ module.exports = {
 
       const embed = new EmbedBuilder({
         title: `LOA pending`,
-        color: "#0099ff",
+        colors: "#0099ff",
         fields: [
           {
             name: "Reason",
@@ -66,7 +66,7 @@ module.exports = {
       });
       const buttons = new ActionRowBuilder().addComponents(new ButtonBuilder().setCustomId("accept").setLabel("Accept").setStyle("Primary"), new ButtonBuilder().setCustomId("deny").setLabel("Deny").setStyle("Secondary"));
       const filter = (ButtonInteraction) => {
-        return ButtonInteraction.member.permissions.has(Permissions.FLAGS.ADMINISTRATOR);
+        return ButtonInteraction.member.permissions.has(Permissions.Flags.ADMINISTRATOR);
       };
       loaChannel.send({ embeds: [embed], components: [buttons] }).then((message) => {
         interaction.reply({ content: "LOA asked successfully.", ephemeral: true });
@@ -100,7 +100,7 @@ module.exports = {
 
       const embed = new MessageEmbed({
         title: `Returned from their LOA`,
-        color: "#0099ff",
+        colors: "#0099ff",
       }).setAuthor({
         name: interaction.member.user.tag,
         iconURL: interaction.member.displayAvatarURL(),

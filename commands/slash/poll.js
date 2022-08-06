@@ -1,6 +1,4 @@
-const { EmbedBuilder, ActionRowBuilder, MessageButton, ApplicationCommandOptionType, Permissions } = require("discord.js");
-const { Colors } = require("discord.js");
-
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, Permissions, ButtonStyle, Colors } = require("discord.js");
 module.exports = {
   name: "poll",
   description: "Poll util management",
@@ -133,7 +131,7 @@ module.exports = {
             new ButtonBuilder()
               .setCustomId("poll_" + pollId.toString() + "_" + i.toString())
               .setLabel(getButton(i.toString()))
-              .setStyle("SECONDARY")
+              .setStyle("Secondary")
           );
         }
       }
@@ -144,7 +142,7 @@ module.exports = {
             new MessageButton()
               .setCustomId("poll_" + pollId.toString() + "_" + i.toString())
               .setLabel(getButton(i.toString()))
-              .setStyle("SECONDARY")
+              .setStyle("Secondary")
           );
         }
       }
@@ -164,7 +162,7 @@ module.exports = {
           if (interact.isCommand()) if (interact.commandName == "poll") if (interact.options._subcommand == "end") if (interact.options.getInteger("id") == pollId) collector.stop();
         });
         collector.on("collect", () => {
-          embed.fields[0].value = Object.values(pollsList[pollId]).length.toString();
+          embed.addFields[0] =  Object.values(pollsList[pollId]).length.toString();
           message.edit({ embeds: [embed] });
         });
         collector.on("end", () => {
@@ -181,7 +179,7 @@ module.exports = {
                 winners.push(interaction.options.getString(i.toString()));
               }
             }
-            const totalVotes = embed.fields[0].value;
+            const totalVotes = embed.addFields[0];
             embed.setDescription(`Poll ended <t:${timestamp}:R>`);
             embed.setFields([]);
             if (winners.length == 1) embed.addFields([{ name: "Winner", value: `**${winners}** with **${maxLength}** votes`, inline: true }]);
@@ -204,11 +202,11 @@ module.exports = {
       if (interact.isButton()) {
         if (interact.customId.substring(0, 4) == "poll") {
           const pollId = interact.customId.substring(5, 10);
-          let embed = new MessageEmbed();
-          if (global.pollsList[pollId][interact.user.id]) embed.setTitle("You have already voted for this poll").setColor("RED");
+          let embed = new EmbedBuilder();
+          if (global.pollsList[pollId][interact.user.id]) embed.setTitle("You have already voted for this poll").setColor("Red");
           else {
             global.pollsList[pollId][interact.user.id] = interact.customId;
-            embed.setTitle(`You successfully voted for **${getLabel(pollId, interact.customId.substring(11, 13))}**`).setColor("GREEN");
+            embed.setTitle(`You successfully voted for **${getLabel(pollId, interact.customId.substring(11, 13))}**`).setColor("Green");
           }
           return interact.reply({ embeds: [embed], ephemeral: true });
         } else return;

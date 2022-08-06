@@ -1,4 +1,4 @@
-const { MessageEmbed, ApplicationCommandOptionType, Permissions } = require("discord.js");
+const { EmbedBuilder, ApplicationCommandOptionType, Permissions } = require("discord.js");
 
 module.exports = {
   name: "prefix",
@@ -13,7 +13,7 @@ module.exports = {
   ],
   callback: (interaction) => {
     let temp = true;
-    const embed = new MessageEmbed().setTitle(`The current server prefix is ${process.env.PREFIX}`).setColor("BLUE");
+    const embed = new EmbedBuilder().setTitle(`The current server prefix is ${process.env.PREFIX}`).setColor("BLUE");
     if (interaction.options.getString("prefix")) {
       if (interaction.member.permissions.has(Permissions.FLAGS.MANAGE_GUILD)) {
         oldPrefix = process.env.PREFIX;
