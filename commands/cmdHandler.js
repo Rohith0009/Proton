@@ -164,7 +164,7 @@ module.exports = async (client) => {
           slashCommands[interaction.commandName].callback(interaction);
         } catch (error) {
           console.error(error);
-          const embed = new EmbedBuilder().setTitle("An error occurred while executing that command").setColor("RED");
+          const embed = new EmbedBuilder().setTitle("An error occurred while executing that command").setColor("Red");
           interaction.reply({ embeds: [embed], ephemeral: true });
         }
       }

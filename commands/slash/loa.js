@@ -1,5 +1,5 @@
 const config = require("../../config.json");
-const { EmbedBuilder, colors, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, Permissions } = require("discord.js");
+const { EmbedBuilder, colors, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, Permissions, PermissionsBitField } = require("discord.js");
 
 module.exports = {
   name: "loa",
@@ -66,7 +66,7 @@ module.exports = {
       });
       const buttons = new ActionRowBuilder().addComponents(new ButtonBuilder().setCustomId("accept").setLabel("Accept").setStyle("Primary"), new ButtonBuilder().setCustomId("deny").setLabel("Deny").setStyle("Secondary"));
       const filter = (ButtonInteraction) => {
-        return ButtonInteraction.member.permissions.has(Permissions.Flags.ADMINISTRATOR);
+        return ButtonInteraction.member.permissions.has(PermissionsBitField.Flags.ADMINISTRATOR);
       };
       loaChannel.send({ embeds: [embed], components: [buttons] }).then((message) => {
         interaction.reply({ content: "LOA asked successfully.", ephemeral: true });
@@ -76,11 +76,11 @@ module.exports = {
             dev.setNickname(`[LOA] ${dev.displayName}`);
             dev.roles.add(loaRole);
             embed.setTitle(`LOA granted by \`${collection.first().member.user.tag}\``);
-            embed.setColor("GREEN");
+            embed.setColor("Green");
             message.edit({ embeds: [embed], components: [] });
           } else {
             embed.setTitle(`LOA denied by \`${collection.first().member.user.tag}\``);
-            embed.setColor("RED");
+            embed.setColor("Red");
             message.edit({ embeds: [embed], components: [] });
           }
         });
@@ -98,7 +98,7 @@ module.exports = {
       const loaRole = interaction.guild.roles.cache.find((r) => r.name === "LOA");
       const loaChannel = interaction.guild.channels.cache.find((c) => c.id === config.loaReports);
 
-      const embed = new MessageEmbed({
+      const embed = new EmbedBuilder({
         title: `Returned from their LOA`,
         colors: "#0099ff",
       }).setAuthor({
