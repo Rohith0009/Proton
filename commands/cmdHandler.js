@@ -45,10 +45,16 @@ module.exports = async (client) => {
           await multiReact(message, "🇯  🇾  🇴  🇹  🇭  🇮  🇷");
         },
       ],
-            [
+      [
         ["prayag"],
         async () => {
           await multiReact(message, "🇵  🇷  🇦  🇾  🅰️  🇬 ");
+        },
+      ],
+      [
+        ["gagan"],
+        async () => {
+          await multiReact(message, "🇬 🅰️ 🇬 🇦 🇳");
         },
       ],
       [["pineapple"], () => message.react("🍍")],
@@ -62,36 +68,39 @@ module.exports = async (client) => {
     var msg = message.content.toLowerCase();
     var msg = msg.replace(/[&\/\\#,+()$~!%.'":*?<>{}]/, "");
     if (message.author.id === client.user.id) return;
+    if(!message.author.bot){
+    var nickname = message.member.displayName;
+    }
 
     if (msg === "good morning") {
-      message.reply("Good Morning!");
+      message.reply(`Good Morning ${nickname}`);
     }
     if (msg === "good afternoon") {
-      message.reply("Good Afternoon!");
+      message.reply(`Good Afternoon ${nickname}`);
     }
     if (msg === "good evening") {
-      message.reply("Good Evening!");
+      message.reply(`Good Evening ${nickname}`);
     }
     if (msg === "good night") {
-      message.reply("Good Night!");
+      message.reply(`Good Night ${nickname}`);
     }
     if (msg === "hello") {
-      message.reply("Hello!");
+      message.reply(`Hello ${nickname}`);
     }
     if (msg === "hi") {
-      message.reply("Hello!");
+      message.reply(`Hello ${nickname}`);
     }
     if (msg === "bye") {
-      message.reply("Bye! Until We Meet Again");
+      message.reply(`Bye ${nickname} Until We Meet Again`);
     }
     if (msg === "how are you") {
-      message.reply("I Am Fine! How Are You?");
+      message.reply(`I Am Fine ${nickname} How Are You?`);
     }
     if (msg === "i am fine") {
-      message.reply("Great!");
+      message.reply(`Great!`);
     }
     if (msg === "i am bored") {
-      message.reply("No Problem! I am There To Chat With You!!");
+      message.reply(`No Problem ${nickname} I am There To Chat With You!!`);
     }
     if (msg === "pls on the server") {
       message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
@@ -158,7 +167,7 @@ module.exports = async (client) => {
 
   for (const guildID of client.guilds.cache.keys()) {
     const guild = client.guilds.cache.get(guildID);
-    //    await guild.commands.set(slashCommands);
+    await guild.commands.set(slashCommands);
     client.on("interactionCreate", (interaction) => {
       if (interaction.isCommand() && interaction.guildId === guildID) {
         try {
