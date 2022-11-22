@@ -1,5 +1,5 @@
 const config = require("../../config.json");
-const { EmbedBuilder, colors, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, Permissions, PermissionsBitField } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, PermissionsBitField, Permissions} = require("discord.js");
 
 module.exports = {
   name: "loa",
@@ -8,6 +8,8 @@ module.exports = {
     {
       name: "apply",
       description: "Apply for LOA",
+      type: ApplicationCommandOptionType.Subcommand,
+
       options: [
         {
           name: "reason",
@@ -26,6 +28,7 @@ module.exports = {
     {
       name: "return",
       description: "Return from LOA",
+      type: ApplicationCommandOptionType.Subcommand,
     },
   ],
   callback: async (interaction) => {
@@ -64,9 +67,12 @@ module.exports = {
         name: interaction.member.user.tag,
         iconURL: interaction.member.displayAvatarURL(),
       });
-      const buttons = new ActionRowBuilder().addComponents(new ButtonBuilder().setCustomId("accept").setLabel("Accept").setStyle("Primary"), new ButtonBuilder().setCustomId("deny").setLabel("Deny").setStyle("Secondary"));
+      const buttons = new ActionRowBuilder().addComponents(
+        new ButtonBuilder().setCustomId("accept").setLabel("Accept").setStyle("Primary"),
+        new ButtonBuilder().setCustomId("deny").setLabel("Deny").setStyle("Secondary")
+      );
       const filter = (ButtonInteraction) => {
-        return ButtonInteraction.member.permissions.has(PermissionsBitField.Flags.ADMINISTRATOR);
+        return ButtonInteraction.member.permissions.has(PermissionsBitField.Flags.Administrator);
       };
       loaChannel.send({ embeds: [embed], components: [buttons] }).then((message) => {
         interaction.reply({ content: "LOA asked successfully.", ephemeral: true });

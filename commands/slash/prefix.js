@@ -1,4 +1,4 @@
-const { EmbedBuilder, ApplicationCommandOptionType, Permissions, PermissionsBitField } = require("discord.js");
+const { EmbedBuilder, ApplicationCommandOptionType, PermissionsBitField } = require("discord.js");
 
 module.exports = {
   name: "prefix",

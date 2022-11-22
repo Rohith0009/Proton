@@ -1,4 +1,4 @@
-const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, Permissions, ButtonStyle, Colors } = require("discord.js");
+const { EmbedBuilder, ActionRowBuilder, ButtonBuilder, ApplicationCommandOptionType, Colors } = require("discord.js");
 module.exports = {
   name: "poll",
   description: "Poll util management",
@@ -6,6 +6,7 @@ module.exports = {
     {
       name: "create",
       description: "Create a poll",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "title",
@@ -84,6 +85,7 @@ module.exports = {
     {
       name: "end",
       description: "End a poll",
+      type: ApplicationCommandOptionType.Subcommand,
       options: [
         {
           name: "id",
@@ -162,7 +164,7 @@ module.exports = {
           if (interact.isCommand()) if (interact.commandName == "poll") if (interact.options._subcommand == "end") if (interact.options.getInteger("id") == pollId) collector.stop();
         });
         collector.on("collect", () => {
-          embed.addFields[0] =  Object.values(pollsList[pollId]).length.toString();
+          embed.addFields[0] = Object.values(pollsList[pollId]).length.toString();
           message.edit({ embeds: [embed] });
         });
         collector.on("end", () => {

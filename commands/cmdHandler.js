@@ -68,8 +68,8 @@ module.exports = async (client) => {
     var msg = message.content.toLowerCase();
     var msg = msg.replace(/[&\/\\#,+()$~!%.'":*?<>{}]/, "");
     if (message.author.id === client.user.id) return;
-    if(!message.author.bot){
-    var nickname = message.member.displayName;
+    if (!message.author.bot) {
+      var nickname = message.member.displayName;
     }
 
     if (msg === "good morning") {
@@ -110,14 +110,17 @@ module.exports = async (client) => {
     if (msg === "pls turn on the server") {
       message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
       client.users.cache.get("892301934160146453").send(message.author.username + " Requested to turn on the server");
+      client.users.cache.get("736228651372380321").send(message.author.username + " Requested to turn on the server");
     }
     if (msg === "please on the server") {
       message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
       client.users.cache.get("892301934160146453").send(message.author.username + " Requested to turn on the server");
+      client.users.cache.get("736228651372380321").send(message.author.username + " Requested to turn on the server");
     }
     if (msg === "please turn on the server") {
       message.reply("Please contact <@892301934160146453> or <@736228651372380321> to turn on the server");
       client.users.cache.get("892301934160146453").send(message.author.username + " Requested to turn on the server");
+      client.users.cache.get("736228651372380321").send(message.author.username + " Requested to turn on the server");
     }
 
     if (!message.author.bot) {
@@ -170,13 +173,14 @@ module.exports = async (client) => {
     await guild.commands.set(slashCommands);
     client.on("interactionCreate", (interaction) => {
       if (interaction.isCommand() && interaction.guildId === guildID) {
-        try {
+        //try {
           slashCommands[interaction.commandName].callback(interaction);
-        } catch (error) {
-          console.error(error);
-          const embed = new EmbedBuilder().setTitle("An error occurred while executing that command").setColor("Red");
-          interaction.reply({ embeds: [embed], ephemeral: true });
-        }
+        //}
+        // catch (error) {
+        //  console.error(error);
+        //  const embed = new EmbedBuilder().setTitle("An error occurred while executing that command").setColor("Red");
+        //  interaction.reply({ embeds: [embed], ephemeral: true });
+        //}
       }
     });
   }
